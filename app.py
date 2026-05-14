@@ -444,7 +444,6 @@ with tabs[0]:
                 if success:
                     st.success(f'✅ 期号 {new_period} 添加成功！')
                     st.info(f'号码已自动排序：{" ".join(map(str, nums))}')
-                    st.rerun()
                 else:
                     st.error(error_msg)
 
@@ -478,7 +477,6 @@ with tabs[0]:
                             st.session_state.lottery_data.loc[modify_period] = nums
                             save_lottery_data(st.session_state.lottery_data)
                             st.success('✅ 修改成功！')
-                            st.rerun()
                     except ValueError:
                         st.error('❌ 请输入有效数字')
         else:
@@ -500,7 +498,6 @@ with tabs[0]:
                         st.session_state.lottery_data = st.session_state.lottery_data.drop(delete_period)
                         save_lottery_data(st.session_state.lottery_data)
                         st.success(f'✅ 期号 {delete_period} 删除成功！')
-                        st.rerun()
                     else:
                         st.error('❌ 请先勾选确认框')
         else:
@@ -1015,7 +1012,6 @@ with tabs[3]:
             if st.button('🗑️ 删除选中记录', type='secondary', key='btn_pool'):
                 if delete_follow_pool_record(delete_pool):
                     st.success(f'✅ 已删除 {delete_pool} 期相随号池')
-                    st.rerun()
                 else:
                     st.error('❌ 删除失败')
 
@@ -1555,7 +1551,6 @@ with tabs[4]:
                     if st.button('🗑️ 删除选中记录', type='secondary', key='btn_del_pred1'):
                         if delete_prediction_record(delete_period, 'prediction1'):
                             st.success(f'✅ 已删除 {delete_period} 期预测记录')
-                            st.rerun()
                         else:
                             st.error('❌ 删除失败')
     else:
@@ -1963,7 +1958,6 @@ with tabs[5]:
                 if st.button('🗑️ 删除选中记录', type='secondary', key='btn_tab6'):
                     if delete_prediction_record(delete_period, 'prediction2'):
                         st.success(f'✅ 已删除 {delete_period} 期预测记录')
-                        st.rerun()
                     else:
                         st.error('❌ 删除失败')
 
@@ -2250,7 +2244,6 @@ with tabs[6]:
                                 filepath = os.path.join('comparisons', filename)
                                 os.remove(filepath)
                         st.warning(f'⚠️ 已删除{selected_period}期{del_count}条对比记录')
-                        st.rerun()
                 else:
                     st.button(f'🗑️ 删除{selected_period}期记录', type='secondary', use_container_width=True, disabled=True)
 
@@ -2515,7 +2508,6 @@ with tabs[7]:
                                 del_count += 1
                         if del_count > 0:
                             st.warning(f"⚠️ 已删除 {selected_delete} 期的 {del_count} 条记录")
-                            st.rerun()
         
         with col2:
             st.markdown("""
@@ -2531,7 +2523,6 @@ with tabs[7]:
                     filepath = os.path.join('comparisons', filename)
                     os.remove(filepath)
                 st.warning("⚠️ 已清空所有对比记录")
-                st.rerun()
         
         # 7. 数据导出
         st.divider()
@@ -2950,7 +2941,6 @@ with tabs[8]:
         st.session_state.v72a_core_pool = []
         st.session_state.v72a_diagnosis = None
         st.session_state.v72a_combinations = None
-        st.rerun()
 
 
 # ==================== 【Tab 10】 ====================
