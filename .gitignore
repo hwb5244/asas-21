@@ -1,0 +1,5 @@
+lottery_data_v2.csv    # 开奖数据库
+follow_pools/          # 相随号池目录
+predictions/           # 预测记录目录
+core_pool/             # 核心池目录
+hit_rates/             # 命中率目录
