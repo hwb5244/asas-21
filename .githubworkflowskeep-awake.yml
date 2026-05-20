@@ -1,0 +1,29 @@
+name: Keep Streamlit App Awake
+on:
+  schedule:
+    - cron: '0 */10 * * *'  # 每10小时运行一次（核心：必须小于12小时）
+  workflow_dispatch:  # 允许手动触发（用于测试）
+
+jobs:
+  keep-awake:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出仓库代码
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 1
+
+      - name: 配置Git用户
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+      - name: 创建空提交
+        run: git commit --allow-empty -m "🔄 Auto keep awake $(date '+%Y-%m-%d %H:%M')"
+
+      - name: 推送提交到仓库
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
